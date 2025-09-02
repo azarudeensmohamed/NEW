@@ -1,0 +1,302 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Roboto:wght@400;500&display=swap');
+
+@import "tailwindcss";
+@import "tw-animate-css";
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  /* Shadcn/UI Base Colors - Light Theme */
+  --color-background: #FFFFFF;
+  --color-foreground: #212529; /* Dark Gray */
+
+  --color-card: #FFFFFF;
+  --color-card-foreground: #212529;
+
+  --color-popover: #FFFFFF;
+  --color-popover-foreground: #212529;
+
+  --color-primary: #1B4332; /* Primary Dark */
+  --color-primary-foreground: #FFFFFF;
+
+  --color-secondary: #F8F9FA; /* Light Gray */
+  --color-secondary-foreground: #212529;
+
+  --color-muted: #F8F9FA; /* Light Gray */
+  --color-muted-foreground: #6C757D; /* Medium Gray */
+
+  --color-accent: #A7E032; /* Accent Green */
+  --color-accent-foreground: #FFFFFF;
+
+  --color-destructive: #ef4444; /* Default Red */
+  --color-destructive-foreground: #FFFFFF;
+
+  --color-border: #E5E5E5; /* Default Light Gray */
+  --color-input: #E5E5E5; /* Default Light Gray */
+  --color-ring: #1B4332; /* Primary Dark */
+
+  /* Chart colors (default shadcn) - can be customized if specific chart colors are identified */
+  --color-chart-1: #e67e22;
+  --color-chart-2: #2d8659;
+  --color-chart-3: #1e3a5f;
+  --color-chart-4: #f1c40f;
+  --color-chart-5: #e74c3c;
+
+  /* Custom Sidebar Colors (if applicable, based on shadcn template) */
+  --color-sidebar: #F8F9FA; /* Light Gray */
+  --color-sidebar-foreground: #212529; /* Dark Gray */
+  --color-sidebar-primary: #1B4332; /* Primary Dark */
+  --color-sidebar-primary-foreground: #FFFFFF;
+  --color-sidebar-accent: #A7E032; /* Accent Green */
+  --color-sidebar-accent-foreground: #FFFFFF;
+  --color-sidebar-border: #E5E5E5;
+  --color-sidebar-ring: #1B4332;
+
+  /* Shadcn/UI Radii */
+  --radius-lg: 0.5rem;
+  --radius-md: calc(0.5rem - 2px);
+  --radius-sm: calc(0.5rem - 4px);
+
+  /* Shadcn/UI Animations */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+
+  /* Custom Design Tokens */
+  --color-primary-dark: #1B4332;
+  --color-primary-medium: #2D5A43;
+  --color-accent-green: #A7E032;
+  --color-white: #FFFFFF;
+  --color-light-gray: #F8F9FA;
+  --color-medium-gray: #6C757D;
+  --color-dark-gray: #212529;
+
+  --font-heading: "Roboto Slab", serif;
+  --font-body: "Roboto", sans-serif;
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-border);
+  }
+}
+
+@layer utilities {
+  body {
+    font-family: var(--font-body);
+  }
+}
+
+@layer base {
+  :root {
+    --background: var(--color-background);
+    --foreground: var(--color-foreground);
+    --card: var(--color-card);
+    --card-foreground: var(--color-card-foreground);
+    --popover: var(--color-popover);
+    --popover-foreground: var(--color-popover-foreground);
+    --primary: var(--color-primary);
+    --primary-foreground: var(--color-primary-foreground);
+    --secondary: var(--color-secondary);
+    --secondary-foreground: var(--color-secondary-foreground);
+    --muted: var(--color-muted);
+    --muted-foreground: var(--color-muted-foreground);
+    --accent: var(--color-accent);
+    --accent-foreground: var(--color-accent-foreground);
+    --destructive: var(--color-destructive);
+    --destructive-foreground: var(--color-destructive-foreground);
+    --border: var(--color-border);
+    --input: var(--color-input);
+    --ring: var(--color-ring);
+    --chart-1: var(--color-chart-1);
+    --chart-2: var(--color-chart-2);
+    --chart-3: var(--color-chart-3);
+    --chart-4: var(--color-chart-4);
+    --chart-5: var(--color-chart-5);
+    --radius: var(--radius-lg); /* Default radius for shadcn components */
+    --sidebar-background: var(--color-sidebar);
+    --sidebar-foreground: var(--color-sidebar-foreground);
+    --sidebar-primary: var(--color-sidebar-primary);
+    --sidebar-primary-foreground: var(--color-sidebar-primary-foreground);
+    --sidebar-accent: var(--color-sidebar-accent);
+    --sidebar-accent-foreground: var(--color-sidebar-accent-foreground);
+    --sidebar-border: var(--color-sidebar-border);
+    --sidebar-ring: var(--color-sidebar-ring);
+  }
+
+  /* No dark theme detected from screenshots, so no .dark block is generated. */
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--color-primary-dark);
+    font-weight: 700; /* Bold */
+  }
+
+  h1 {
+    font-size: 56px; /* Adjusted for hero section, can be responsive */
+    color: var(--color-white); /* Specific for hero section */
+  }
+
+  h2 {
+    font-size: 42px;
+  }
+
+  h3 {
+    font-size: 32px;
+  }
+
+  h4 {
+    font-size: 24px;
+  }
+
+  h5 {
+    font-size: 18px;
+  }
+
+  p {
+    font-family: var(--font-body);
+    color: var(--color-medium-gray);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .text-body-large {
+    font-size: 18px;
+    font-weight: 400; /* Regular */
+  }
+
+  .text-body-regular {
+    font-size: 16px;
+    font-weight: 400; /* Regular */
+  }
+
+  .btn-text {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 500; /* Medium */
+  }
+
+  .nav-text {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 500; /* Medium */
+  }
+
+  .container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+/* bg-primary-dark */
+  .bg-primary-grey{
+    background-color: #6b6b6b;
+  }
+  .bg-accent-gre{
+    background-color:#e3bd66 !important;
+  }
+  .bg-accent-org{
+    background-color:#e3bd66 !important;
+  }
+  .bg-primary-dark-70{
+    background-color: #6e6d6deb !important; 
+  }
+  .text-primary-org{
+    color: #6b6b6b !important;
+  }
+  .text-primary{
+    color: #6b6b6b !important;
+  }
+  .bg-accent-green{
+    background-color:#e3bd66 !important;
+  }
+  .text-primary-dark{
+    color: #6b6b6b !important;
+  }
+  .bg-lime-400{
+    background-color:#e3bd66 !important;
+  }
+  .text-accent-green{
+    color:#e3bd66 !important;
+  }
+
+  .bg-primary-dark\/70 {
+        background-color: 
+     color-mix(in oklab, #6b6b6b 70%, transparent) !important;
+    }
+
+  .bg-primary-dark\/70 {
+        background-color: 
+      color-mix(in oklab, #6b6b6b 70%, transparent) !important;
+    }
+  .bg-green-900{
+      background-color: #6e6d6deb !important;
+  }
+
+  .bg-accent{
+     background-color:#e3bd66 !important;
+  }
+
+  .text-accent-gre:hover {
+    color:#e3bd66 !important;
+  }
+
+  .hover\:text-accent-green:hover{
+     color:#e3bd66 !important;
+  }
+ 
+  .text-accent-green:hover {
+    color:#e3bd66 !important;
+  }
+
+  .fill-accent{
+    fill:#e3bd66 !important;
+  }
+  .fill-accent-org{
+    fill:#e3bd66 !important;
+  }
+  .text-accent {
+    color:#e3bd66 !important;
+  }
+}
+
+/* Hide Next.js error overlay portal */
+nextjs-portal {
+  display: none !important;
+}
